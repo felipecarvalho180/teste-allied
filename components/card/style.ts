@@ -20,12 +20,20 @@ export const Wrapper = styled.div`
     color: ${PRIMARY_COLOR};
   }
 
+  h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: ${PRIMARY_COLOR};
+    margin-bottom: 1.5rem;
+  }
+
   p {
     margin-bottom: 1.8rem;
     color: ${PRIMARY_COLOR};
   }
 
-  button {
+  a {
     display: inline-block;
     border: none;
     border-radius: 1rem;

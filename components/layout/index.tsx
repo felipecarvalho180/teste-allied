@@ -1,8 +1,8 @@
 import React from 'react';
 import { Wrapper } from './style';
 
-const Card: React.FC = ({ children }) => {
+const Layout: React.FC = ({ children }) => {
   return <Wrapper>{children}</Wrapper>;
 };
 
-export default Card;
+export default Layout;

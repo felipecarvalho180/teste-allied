@@ -1,20 +1,25 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import Card from '../components/card';
+import Layout from '../components/layout';
+import PageTitle from '../components/page-title';
 import Sku from '../components/sku';
+import { PlatformInterface } from '../models/platforms/platform.model';
 import { getPlatforms } from '../services/platforms';
-import { ContentWrapper, Header, Wrapper } from './style';
+import { ContentWrapper } from './style';
 
-export default function Home({ platforms }) {
+interface HomeProps {
+  platforms: PlatformInterface[];
+}
+
+export default function Home({ platforms }: HomeProps) {
   return (
-    <Wrapper>
+    <Layout>
       <Head>
         <title>Teste Allied</title>
       </Head>
-
-      <Header>
-        <h1>Selecione sua plataforma</h1>
-      </Header>
+      <PageTitle text="Selecione sua plataforma" />
 
       <ContentWrapper>
         {platforms &&
@@ -23,20 +28,22 @@ export default function Home({ platforms }) {
               <h1>{platform.nome}</h1>
               <Sku text={platform.sku} />
               <p>{platform.descricao.replace('|', ' ')}</p>
-              <button>Selecionar plataforma</button>
+              <Link href={`/plano/${platform.sku}`}>
+                <a>Selecionar plataforma</a>
+              </Link>
             </Card>
           ))}
       </ContentWrapper>
-    </Wrapper>
+    </Layout>
   );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await getPlatforms();
+  const platforms = await getPlatforms();
 
   return {
     props: {
-      platforms: data.plataformas,
+      platforms,
     },
     revalidate: 60 * 60 * 168,
   };
