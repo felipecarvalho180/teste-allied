@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import Card from '../../components/card';
 import Layout from '../../components/layout';
 import PageTitle from '../../components/page-title';
@@ -65,7 +66,9 @@ export default function Plano({ plans }: PlanoInterface) {
                         )}
                       </AdditionalItemsWrapper>
                     </CardContentWrapper>
-                    <a>Selecionar plano</a>
+                    <Link href="/concluir">
+                      <a>Selecionar plano</a>
+                    </Link>
                   </Card>
                 )
             )}

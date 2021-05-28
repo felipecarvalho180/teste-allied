@@ -1,8 +1,12 @@
 import React from 'react';
 import { Wrapper } from './style';
 
-const Layout: React.FC = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>;
+interface LayoutProps {
+  bgImage?: string;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children, bgImage }) => {
+  return <Wrapper bgImage={bgImage}>{children}</Wrapper>;
 };
 
 export default Layout;

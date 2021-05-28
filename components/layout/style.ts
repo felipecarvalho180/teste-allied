@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.div`
+interface WrapperProps {
+  bgImage: string;
+}
+
+export const Wrapper = styled.div<WrapperProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,4 +15,10 @@ export const Wrapper = styled.div`
   background-position-x: right;
   background-position-y: bottom;
   background-size: 50rem;
+
+  ${({ bgImage }) =>
+    bgImage &&
+    css`
+      background-image: ${bgImage};
+    `}
 `;
