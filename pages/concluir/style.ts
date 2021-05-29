@@ -26,6 +26,17 @@ export const Wrapper = styled.form`
     background: #f7f8fa;
   }
 
+  /* @media (max-width: 640px) {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  } */
+
+  @media (max-width: 1020px) {
+    width: 90%;
+    height: 90%;
+  }
+
   button {
     display: inline-block;
     border: none;

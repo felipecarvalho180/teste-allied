@@ -18,6 +18,10 @@ export const ScrollWrapper = styled.div`
   -webkit-scrollbar-track {
     background: #f7f8fa;
   }
+
+  @media (max-width: 640px) {
+    width: 100%;
+  }
 `;
 
 export const ContentWrapper = styled.div`
@@ -28,6 +32,17 @@ export const ContentWrapper = styled.div`
   grid-template-rows: 1fr;
   gap: 0.5rem 0.5rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 640px) {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: 1020px) {
+    overflow-x: auto;
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 export const CardContentWrapper = styled.div`

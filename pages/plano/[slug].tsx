@@ -1,11 +1,13 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useContext } from 'react';
 import Card from '../../components/card';
 import Layout from '../../components/layout';
 import PageTitle from '../../components/page-title';
 import PlusItem from '../../components/plus-item';
 import Sku from '../../components/sku';
+import { PurchaseContext } from '../../context/purchase/PurchaseContext';
 import {
   ComputerInterface,
   TabletInterface,
@@ -25,6 +27,8 @@ interface PlanoInterface {
 }
 
 export default function Plano({ plans }: PlanoInterface) {
+  const { selectPlan } = useContext(PurchaseContext);
+
   return (
     <Layout>
       <Head>
@@ -67,7 +71,7 @@ export default function Plano({ plans }: PlanoInterface) {
                       </AdditionalItemsWrapper>
                     </CardContentWrapper>
                     <Link href="/concluir">
-                      <a>Selecionar plano</a>
+                      <a onClick={() => selectPlan(plan)}>Selecionar plano</a>
                     </Link>
                   </Card>
                 )

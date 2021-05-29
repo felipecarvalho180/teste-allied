@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useContext } from 'react';
 import * as Yup from 'yup';
 import IconInput from '../../components/icon-input';
 import Layout from '../../components/layout';
@@ -10,6 +10,8 @@ import { FaBirthdayCake } from 'react-icons/fa';
 import { BiIdCard } from 'react-icons/bi';
 import CPFInput from '../../components/cpf-input';
 import PhoneInput, { phoneRegex } from '../../components/phone-input';
+import { ImPhone } from 'react-icons/im';
+import { PurchaseContext } from '../../context/purchase/PurchaseContext';
 
 export interface FormikValues {
   name: string;
@@ -20,6 +22,8 @@ export interface FormikValues {
 }
 
 const Concluir: React.FC = () => {
+  const { plan, platform } = useContext(PurchaseContext);
+
   const formik = useFormik<FormikValues>({
     initialValues: {
       name: '',
@@ -42,11 +46,19 @@ const Concluir: React.FC = () => {
         })
         .required('Campo obrigatório'),
       phoneNumber: Yup.string()
-        .matches(/\(\d{2,}\) \d{4,}\-\d{4}/g, 'erro')
+        .matches(phoneRegex, 'Número de telefone inválido')
         .required('Campo obrigatório'),
     }),
     onSubmit: (values) => {
-      console.log(values);
+      console.log(
+        'Plataforma selecionada: ',
+        JSON.stringify(platform, undefined, 2)
+      );
+      console.log('Plano selecionado: ', JSON.stringify(plan, undefined, 2));
+      console.log(
+        'Valores do formulário: ',
+        JSON.stringify(values, undefined, 2)
+      );
     },
   });
 
@@ -107,7 +119,7 @@ const Concluir: React.FC = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           placeholder="Telefone"
-          Icon={BiIdCard}
+          Icon={ImPhone}
           formik={formik}
         />
 

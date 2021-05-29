@@ -18,9 +18,7 @@ interface PhoneInputProps {
   onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
-export const phoneRegex = new RegExp(
-  '^s*(d{2}|d{0})[-. ]?(d{5}|d{4})[-. ]?(d{4})[-. ]?s*$'
-);
+export const phoneRegex = /\(\d{2,}\) \d{4,}\-\d{4}/g;
 
 function PhoneInput({
   Icon,

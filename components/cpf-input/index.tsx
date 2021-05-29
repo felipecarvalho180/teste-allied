@@ -39,7 +39,7 @@ function CPFInput({
           value={value}
           onChange={onChange}
           onBlur={onBlur}
-          maskChar=" "
+          maskChar="_"
         >
           {() => (
             <OutlinedInput
